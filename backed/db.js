@@ -1,15 +1,18 @@
+
 const mysql = require('mysql2');
 
+require('dotenv').config();
+
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'MySql@2026!Tirana',
-    database: 'menaxhim_pronash'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
 db.connect((err) => {
-    if(err){
-        console.log('Gabim ne lidhjen me databazen');
+    if (err) {
+        console.error('Gabim ne lidhjen me databazen:', err.message);
     } else {
         console.log('MySQL u lidh me sukses');
     }
